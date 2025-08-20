@@ -3,14 +3,14 @@ import json
 import logging
 import os
 import pkgutil
-import sys
 import shutil
-from uuid import uuid4
+import sys
 from pathlib import Path
-from cryptography.hazmat.primitives import serialization
+from uuid import uuid4
 
 import markdown
 from bs4 import BeautifulSoup
+from cryptography.hazmat.primitives import serialization
 from open_webui.constants import ERROR_MESSAGES
 
 ####################################
@@ -90,6 +90,7 @@ log_sources = [
     "MODELS",
     "OLLAMA",
     "OPENAI",
+    "GEMINI",
     "RAG",
     "WEBHOOK",
     "SOCKET",
@@ -660,6 +661,16 @@ OTEL_OTLP_SPAN_EXPORTER = os.environ.get(
     "OTEL_OTLP_SPAN_EXPORTER", "grpc"
 ).lower()  # grpc or http
 
+
+####################################
+# GEMINI API
+####################################
+
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+GEMINI_API_BASE_URL = os.environ.get(
+    "GEMINI_API_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/models"
+)
+ENABLE_GEMINI_API = os.environ.get("ENABLE_GEMINI_API", "false").lower() == "true"
 
 ####################################
 # TOOLS/FUNCTIONS PIP OPTIONS
